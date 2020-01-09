@@ -4,11 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using EcommerceApp.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Http;
+
 
 
 namespace EcommerceApp
@@ -26,6 +27,7 @@ namespace EcommerceApp
         public void ConfigureServices(IServiceCollection services)
         {
                     services.AddDbContext<HomeContext>(options => options.UseMySql(Configuration["DBInfo:ConnectionString"]));
+                    services.AddSession();   
 
                     services.AddMvc(); 
 
@@ -38,7 +40,7 @@ namespace EcommerceApp
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseSession();
              app.UseMvc();
         }
     }

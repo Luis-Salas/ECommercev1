@@ -24,19 +24,69 @@ using EcommerceApp.Models;
             [Route("")]     
             public ViewResult Index()
             {
-                return View("index");
+            List<User> AllUsers = dbContext.Users.ToList();
+                return View("index", AllUsers);
             }
+
             [HttpGet]      
             [Route("ContentCreator")]     
             public ViewResult ContentCreator()
             {
                 return View("ContentCreator");
             }
+
+            [HttpGet]      
+            [Route("login")]     
+            public ViewResult RenderLogin()
+            {
+                return View("login");
+        }
+
+
+        [HttpPost("LoginUser")]
+        public IActionResult LoginUser(LoginUser thisUser)
+        {
+            {       if(ModelState.IsValid)
+                {
+                    var userInDb = dbContext.Users.FirstOrDefault(u => u.Email == thisUser.Email);
+                
+                    if(userInDb == null)
+                    {
+                        ModelState.AddModelError("Email", "Invalid Email or Password");
+                        return View();
+                    }   
+                    
+                    var hasher = new PasswordHasher<LoginUser>();
+                    var result = hasher.VerifyHashedPassword(thisUser, userInDb.Password, thisUser.Password);
+                    
+                    if(result == 0)
+                    {
+                        ModelState.AddModelError("Email", "Invalid Email or Password");
+                        return View("Login");
+                    }
+                    else
+                    {
+                        HttpContext.Session.SetString("Email", thisUser.Email);
+                        string UserEmail = HttpContext.Session.GetString("Email");
+                        return RedirectToAction("Index");
+                    } 
+                
+                }
+                Console.WriteLine("hellpppppp");
+                return View("Login");
+        }
+        }
+
+
         [HttpPost("Create")]
         public IActionResult Create(User myUser)
         {
             System.Console.WriteLine("HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEee");
             System.Console.WriteLine(myUser.FirstName);
+            System.Console.WriteLine(myUser);
+
+                        System.Console.WriteLine("HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEee");
+
 
             if(ModelState.IsValid) 
             {   
@@ -53,11 +103,11 @@ using EcommerceApp.Models;
                     myUser.Password = Hasher.HashPassword(myUser, myUser.Password);
                     dbContext.Users.Add(myUser);
                     dbContext.SaveChanges();
-                    return RedirectToAction("Login");    
+                    return RedirectToAction("Index");    
                 }
                     
             }
-            return View("Index");
+            return View("index");
         }
 
         }

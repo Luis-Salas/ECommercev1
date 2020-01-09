@@ -1,3 +1,5 @@
+@using EcommerceApp.Models
+@model List<User>
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,6 +9,15 @@
     <body>
         <h1>Home page </h1>
         <h2>welcome to ecom</h2>
-        <a href="/ContentCreator">seller please sign in</a>
+        <a href="/ContentCreator">seller please register</a>
+        <a href="/login">or login</a>
+        <h4>checkout a sellers store</h4>
+
+        @foreach(var user in Model)
+        {
+            <p>@user.FirstName @user.LastName</p>
+        }
+
     </body>
+
 </html>

@@ -1,0 +1,8 @@
+@using EcommerceApp.Models
+@model LoginUser
+<h1>login please</h1>
+<form asp-action="LoginUser" asp-asp-controller="Home" method="post">
+<p>Email: <input asp-for="Email"/></p>
+<p>Password: <input asp-for="Password"/></p>
+<input class="btn btn-warning" type="submit" value="Submit"/>
+</form>
