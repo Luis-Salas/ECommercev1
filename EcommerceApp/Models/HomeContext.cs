@@ -10,13 +10,13 @@ namespace EcommerceApp.Models
 
         public DbSet<Page> Pages {get;set;}
 
-        public DbSet<Product> Products {get;set;}
+        // public DbSet<Product> Products {get;set;}
 
-        public DbSet<Style> Styles {get;set;}
+        // public DbSet<Style> Styles {get;set;}
 
-        public DbSet<Category> Categories {get;set;}
+        // public DbSet<Category> Categories {get;set;}
 
-        public DbSet<SubCategory> SubCategories {get;set;}
+        // public DbSet<SubCategory> SubCategories {get;set;}
 
     }
 }
