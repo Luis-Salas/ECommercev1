@@ -1,0 +1,21 @@
+<h1>register to sell on this site</h1>
+@using EcommerceApp.Models
+@model User
+
+<a href="Login">or Login</a>
+<h2>Register to this Cool site!</h2>
+<form asp-action="Create" asp-controller="Home" method="post">
+<p>First Name: <input asp-for="FirstName"/></p>
+<p>LastName: <input asp-for="LastName"/></p>
+<p>Email: <input asp-for="Email"/></p>
+<p>Password: <input asp-for="Password"/></p>
+<p>Confirm Password: <input asp-for="ConfirmPassword"/></p>
+<input class="btn btn-warning" type="submit" value="Sign Up Now"/></p>
+</form>
+
+<div>
+    <span asp-validation-for="FirstName"></span>
+    <span asp-validation-for="LastName"></span>
+    <span asp-validation-for="Email"></span>
+    <span asp-validation-for="Password"></span>
+</div>

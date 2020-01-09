@@ -21,3 +21,4 @@ C:\Users\escar\Documents\ecom\EcommerceApp\obj\Debug\netcoreapp2.2\Razor\Views\H
 C:\Users\escar\Documents\ecom\EcommerceApp\obj\Debug\netcoreapp2.2\EcommerceApp.RazorTargetAssemblyInfo.cs
 C:\Users\escar\Documents\ecom\EcommerceApp\obj\Debug\netcoreapp2.2\EcommerceApp.Views.pdb
 C:\Users\escar\Documents\ecom\EcommerceApp\obj\Debug\netcoreapp2.2\EcommerceApp.csproj.CopyComplete
+C:\Users\escar\Documents\ecom\EcommerceApp\obj\Debug\netcoreapp2.2\Razor\Views\Home\ContentCreator.g.cshtml.cs

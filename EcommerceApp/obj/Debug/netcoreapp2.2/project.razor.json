@@ -2961,6 +2961,11 @@
   "RootNamespace": "EcommerceApp",
   "Documents": [
     {
+      "FilePath": "c:\\Users\\escar\\Documents\\ecom\\EcommerceApp\\Views\\Home\\ContentCreator.cshtml",
+      "TargetPath": "Views\\Home\\ContentCreator.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\escar\\Documents\\ecom\\EcommerceApp\\Views\\Home\\index.cshtml",
       "TargetPath": "Views\\Home\\index.cshtml",
       "FileKind": "mvc"

@@ -1,6 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace EcommerceApp.Models
 {
-    public class HomeContext
+    public class HomeContext : DbContext
     {
         public HomeContext(DbContextOptions options) : base(options) { }
 

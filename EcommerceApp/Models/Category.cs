@@ -5,7 +5,7 @@ namespace EcommerceApp.Models
 {
     public class Category
     {
-        [key]
+        [Key]
         public int CategoryId {get;set;}
 
         public string Outwear {get;set;}

@@ -5,7 +5,7 @@ namespace EcommerceApp.Models
 {
     public class Style
     {
-        [key]
+        [Key]
         public int StyleId {get;set;}
 
         public string StyleType {get;set;}
