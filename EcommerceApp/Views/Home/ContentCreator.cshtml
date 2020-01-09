@@ -4,15 +4,15 @@
 
 <a href="Login">or Login</a>
 <h2>Register to this Cool site!</h2>
-<form asp-action="Create" asp-controller="Home" method="post">
+
+ <form action="/Create" asp-controller="Home"method="Post">
 <p>First Name: <input asp-for="FirstName"/></p>
 <p>LastName: <input asp-for="LastName"/></p>
 <p>Email: <input asp-for="Email"/></p>
 <p>Password: <input asp-for="Password"/></p>
-<p>Confirm Password: <input asp-for="ConfirmPassword"/></p>
-<input class="btn btn-warning" type="submit" value="Sign Up Now"/></p>
+<p>Confirm Password: <input asp-for="Confirm"/></p>
+        <button>Submit</button>
 </form>
-
 <div>
     <span asp-validation-for="FirstName"></span>
     <span asp-validation-for="LastName"></span>

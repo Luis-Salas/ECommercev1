@@ -1,5 +1,5 @@
 {
-  "FilePath": "c:\\Users\\escar\\Documents\\ecom\\EcommerceApp\\EcommerceApp.csproj",
+  "FilePath": "c:\\Users\\Luis\\Documents\\ECommercev1\\EcommerceApp\\EcommerceApp.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-2.1",
     "LanguageVersion": "2.1",
@@ -2961,12 +2961,12 @@
   "RootNamespace": "EcommerceApp",
   "Documents": [
     {
-      "FilePath": "c:\\Users\\escar\\Documents\\ecom\\EcommerceApp\\Views\\Home\\ContentCreator.cshtml",
+      "FilePath": "c:\\Users\\Luis\\Documents\\ECommercev1\\EcommerceApp\\Views\\Home\\ContentCreator.cshtml",
       "TargetPath": "Views\\Home\\ContentCreator.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\escar\\Documents\\ecom\\EcommerceApp\\Views\\Home\\index.cshtml",
+      "FilePath": "c:\\Users\\Luis\\Documents\\ECommercev1\\EcommerceApp\\Views\\Home\\index.cshtml",
       "TargetPath": "Views\\Home\\index.cshtml",
       "FileKind": "mvc"
     }
