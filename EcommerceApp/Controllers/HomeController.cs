@@ -36,7 +36,7 @@ using EcommerceApp.Models;
             }
 
             [HttpGet]      
-            [Route("login")]     
+            [Route("login")] 
             public ViewResult RenderLogin()
             {
                 return View("login");
@@ -98,11 +98,21 @@ using EcommerceApp.Models;
                     return View("Index");
                 } 
                 else
-                {   
+                {
                     PasswordHasher<User> Hasher = new PasswordHasher<User>();
                     myUser.Password = Hasher.HashPassword(myUser, myUser.Password);
                     dbContext.Users.Add(myUser);
+                    System.Console.WriteLine(myUser.UserId);
                     dbContext.SaveChanges();
+                    
+                    User UserFromDB = dbContext.Users.FirstOrDefault(u => u.Email == myUser.Email);
+                    Console.WriteLine("///////////////////////////////");
+
+                    Console.WriteLine(UserFromDB);
+                    Page Userpage = new Page(){name=UserFromDB.FirstName +" Page", about=" ",UserId=UserFromDB.UserId};
+                    dbContext.Pages.Add(Userpage);
+                    dbContext.SaveChanges();
+
                     return RedirectToAction("Index");    
                 }
                     
