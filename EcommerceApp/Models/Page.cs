@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+
 using System.ComponentModel.DataAnnotations;
 
 namespace EcommerceApp.Models
@@ -13,11 +15,12 @@ namespace EcommerceApp.Models
         [Required]
 
         public string about {get;set;}
-        public int UserId {get;set;}
 
         //navigation property to the user
+        public int UserId {get;set;}
         public User UsersPage {get;set;}
-
+        //nav property for product
+        public List<Product> Products {get;set;}
         public DateTime CreatedAt {get;set;} = DateTime.Now;
         public DateTime UpdatedAt {get;set;} = DateTime.Now;
 

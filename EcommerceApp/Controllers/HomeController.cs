@@ -81,17 +81,9 @@ using EcommerceApp.Models;
         [HttpPost("Create")]
         public IActionResult Create(User myUser)
         {
-            System.Console.WriteLine("HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEee");
-            System.Console.WriteLine(myUser.FirstName);
-            System.Console.WriteLine(myUser);
-
-                        System.Console.WriteLine("HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEee");
-
 
             if(ModelState.IsValid) 
             {   
-                            System.Console.WriteLine("HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEee");
-
                 if(dbContext.Users.Any(u => u.Email == myUser.Email))
                 {   
                     ModelState.AddModelError("Email", "Email already in use!");

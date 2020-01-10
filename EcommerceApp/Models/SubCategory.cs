@@ -11,6 +11,13 @@ namespace EcommerceApp.Models
     {
         [Key]
         public int SubCategoryId {get;set;}
+        public string Name {get;set;}
+        //navigation property to Style
+        public int StyleId {get;set;}
+        public Style ParentStyle{get;set;}
+
+        public DateTime CreatedAt {get;set;} = DateTime.Now;
+        public DateTime UpdatedAt {get;set;} = DateTime.Now;
 
         // //MIGHT WANT TO SEPERATE THESE SUBCATEGORIES INTO THEIR OWN MODEL*********
         // public string Blazers {get;set;}
@@ -59,8 +66,5 @@ namespace EcommerceApp.Models
 
         // //------------------------------------------------
 
-        
-        // public DateTime CreatedAt {get;set;} = DateTime.Now;
-        // public DateTime UpdatedAt {get;set;} = DateTime.Now;
     }
 }

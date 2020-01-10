@@ -34,6 +34,7 @@ namespace EcommerceApp.Models
         [Compare("Password")]
         [DataType(DataType.Password)]
         public string ConfirmPassword {get;set;}
+        //navigation property to Page
         public List<Page> Pages {get;set;}
 
     }
