@@ -25,6 +25,7 @@ using EcommerceApp.Models;
             public ViewResult Index()
             {
             List<User> AllUsers = dbContext.Users.ToList();
+            
                 return View("index", AllUsers);
             }
 
@@ -39,8 +40,10 @@ using EcommerceApp.Models;
             [Route("login")] 
             public ViewResult RenderLogin()
             {
+                string LocalVariable = HttpContext.Session.GetString("Email");
+                System.Console.WriteLine(LocalVariable);
                 return View("login");
-        }
+            }
 
 
         [HttpPost("LoginUser")]
@@ -72,7 +75,6 @@ using EcommerceApp.Models;
                     } 
                 
                 }
-                Console.WriteLine("hellpppppp");
                 return View("Login");
         }
         }

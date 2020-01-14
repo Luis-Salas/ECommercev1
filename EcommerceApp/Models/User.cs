@@ -39,37 +39,5 @@ namespace EcommerceApp.Models
 
     }
 
-    // public class PasswordValiAttribute : ValidationAttribute
-    // {
-    //     protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-    //     {
-    //         bool validPassword = false;
-    //         string Error = String.Empty;
-    //         string Password = value == null ? String.Empty : value.ToString();
-    //         if (String.IsNullOrEmpty(Password) || Password.Length < 8)
-    //         {
-    //             return new ValidationResult("Your new password must be at least 8 characters long.");
-    //         }
-    //         else
-    //         {
-    //             Regex reSymbol = new Regex("[^a-zA-Z0-9]");
-    //             if (!reSymbol.IsMatch(Password))
-    //             {
-    //                 Error += "Your new password must contain at least 1 symbol character.";
-    //             }
-    //             else
-    //             {
-    //                 validPassword = true;
-    //             }
-    //         }
-    //         if (validPassword)
-    //         {
-    //             return ValidationResult.Success;
-    //         }
-    //         else
-    //         {
-    //             return new ValidationResult(Error);
-    //         }
-    //     }
-    // }
+  
 }

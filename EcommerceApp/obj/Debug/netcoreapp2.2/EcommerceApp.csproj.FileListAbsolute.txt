@@ -50,3 +50,4 @@ C:\Users\escar\Documents\ecom\EcommerceApp\obj\Debug\netcoreapp2.2\Razor\Views\_
 C:\Users\escar\Documents\ecom\EcommerceApp\obj\Debug\netcoreapp2.2\Razor\Views\Home\login.g.cshtml.cs
 C:\Users\Luis\Documents\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\Razor\Views\Home\login.g.cshtml.cs
 C:\Users\Luis\Documents\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\Razor\Views\_ViewImports.g.cshtml.cs
+C:\Users\escar\Documents\ecom\EcommerceApp\obj\Debug\netcoreapp2.2\Razor\Views\UserPage\Home.g.cshtml.cs

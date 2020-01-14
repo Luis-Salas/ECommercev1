@@ -15,7 +15,7 @@
 
         @foreach(var user in Model)
         {
-            <p>@user.FirstName @user.LastName</p>
+            <a href="/UserPage/@user.UserId">@user.FirstName @user.LastName</a>
         }
 
     </body>
