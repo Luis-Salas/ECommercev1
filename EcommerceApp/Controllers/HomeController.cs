@@ -25,7 +25,9 @@ using EcommerceApp.Models;
             public ViewResult Index()
             {
             List<User> AllUsers = dbContext.Users.ToList();
-            
+            ViewBag.FirstName = HttpContext.Session.GetString("FirstName");
+            System.Console.WriteLine(HttpContext.Session.GetString("FirstName"));
+            System.Console.WriteLine("//////////////////////////////////////");
                 return View("index", AllUsers);
             }
 
@@ -69,7 +71,9 @@ using EcommerceApp.Models;
                     }
                     else
                     {
-                        HttpContext.Session.SetString("Email", thisUser.Email);
+                        HttpContext.Session.SetString("Email", userInDb.Email);
+                        HttpContext.Session.SetString("FirstName", userInDb.FirstName);
+                        HttpContext.Session.SetInt32("IdFromDb", userInDb.UserId);
                         string UserEmail = HttpContext.Session.GetString("Email");
                         return RedirectToAction("Index");
                     } 
