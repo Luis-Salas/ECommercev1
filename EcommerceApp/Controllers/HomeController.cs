@@ -27,7 +27,6 @@ using EcommerceApp.Models;
             List<User> AllUsers = dbContext.Users.ToList();
             ViewBag.FirstName = HttpContext.Session.GetString("FirstName");
             System.Console.WriteLine(HttpContext.Session.GetString("FirstName"));
-            System.Console.WriteLine("//////////////////////////////////////");
                 return View("index", AllUsers);
             }
 
