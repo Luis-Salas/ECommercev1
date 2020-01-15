@@ -1,8 +1,27 @@
 @using EcommerceApp.Models
 @model LoginUser
+
+<div class="Header">
+    <h1>Welcome to EcommerceApp!</h1>
+    <a href="/">Home</a>
+</div>
+<div>
+    <span style="color:red;" asp-validation-for="Email"></span>
+    <span style="color:red;" asp-validation-for="Password"></span>
+</div>
+
 <h1>login please</h1>
+
+
 <form asp-action="LoginUser" asp-asp-controller="Home" method="post">
-<p>Email: <input asp-for="Email"/></p>
-<p>Password: <input asp-for="Password"/></p>
-<input class="btn btn-warning" type="submit" value="Submit"/>
+    <div class="Email">
+        <label for="Email"></label>
+        <input asp-for="Email" class="form-control" aria-placeholder="Email">
+    </div>
+
+    <div class="Password">
+        <label for="Password"></label>
+        <input asp-for="Password" class="form-control" aria-placeholder="Password">
+    </div><br>
+    <input class="btn btn-warning" type="submit" value="Submit"/>
 </form>

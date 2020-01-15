@@ -51,3 +51,32 @@ C:\Users\escar\Documents\ecom\EcommerceApp\obj\Debug\netcoreapp2.2\Razor\Views\H
 C:\Users\Luis\Documents\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\Razor\Views\Home\login.g.cshtml.cs
 C:\Users\Luis\Documents\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\Razor\Views\_ViewImports.g.cshtml.cs
 C:\Users\escar\Documents\ecom\EcommerceApp\obj\Debug\netcoreapp2.2\Razor\Views\UserPage\Home.g.cshtml.cs
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\bin\Debug\netcoreapp2.2\EcommerceApp.deps.json
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\bin\Debug\netcoreapp2.2\EcommerceApp.runtimeconfig.json
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\bin\Debug\netcoreapp2.2\EcommerceApp.runtimeconfig.dev.json
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\bin\Debug\netcoreapp2.2\EcommerceApp.dll
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\bin\Debug\netcoreapp2.2\EcommerceApp.pdb
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\bin\Debug\netcoreapp2.2\EcommerceApp.Views.dll
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\bin\Debug\netcoreapp2.2\EcommerceApp.Views.pdb
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\EcommerceApp.csprojAssemblyReference.cache
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\EcommerceApp.csproj.CoreCompileInputs.cache
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\EcommerceApp.RazorAssemblyInfo.cache
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\EcommerceApp.RazorAssemblyInfo.cs
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\EcommerceApp.AssemblyInfoInputs.cache
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\EcommerceApp.AssemblyInfo.cs
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\EcommerceApp.TagHelpers.input.cache
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\EcommerceApp.TagHelpers.output.cache
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\EcommerceApp.RazorCoreGenerate.cache
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\Razor\Views\Home\ContentCreator.g.cshtml.cs
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\Razor\Views\Home\index.g.cshtml.cs
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\Razor\Views\Home\login.g.cshtml.cs
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_layout.g.cshtml.cs
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\Razor\Views\UserPage\Home.g.cshtml.cs
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\Razor\Views\_ViewImports.g.cshtml.cs
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\EcommerceApp.RazorTargetAssemblyInfo.cache
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\EcommerceApp.RazorTargetAssemblyInfo.cs
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\EcommerceApp.Views.pdb
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\EcommerceApp.dll
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\EcommerceApp.pdb
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\EcommerceApp.csproj.CopyComplete
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\Razor\Views\_ViewStart.g.cshtml.cs

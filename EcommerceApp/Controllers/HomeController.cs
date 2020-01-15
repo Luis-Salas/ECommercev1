@@ -13,8 +13,8 @@ using EcommerceApp.Models;
     {
         public class HomeController : Controller  
         {
-             private HomeContext dbContext;
-     
+            private HomeContext dbContext;
+    
             // here we can "inject" our context service into the constructor
             public HomeController(HomeContext context)
             {

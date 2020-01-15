@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcommerceApp.Migrations
 {
     [DbContext(typeof(HomeContext))]
-    [Migration("20200113235950_initialmigration")]
-    partial class initialmigration
+    [Migration("20200114071807_migrations")]
+    partial class migrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -151,9 +151,13 @@ namespace EcommerceApp.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<int>("StyleId");
+
                     b.Property<DateTime>("UpdatedAt");
 
                     b.HasKey("SubStyleyId");
+
+                    b.HasIndex("StyleId");
 
                     b.ToTable("SubStyles");
                 });
@@ -209,6 +213,14 @@ namespace EcommerceApp.Migrations
 
                     b.HasOne("EcommerceApp.Models.Style", "Style")
                         .WithMany("BaseProduct")
+                        .HasForeignKey("StyleId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("EcommerceApp.Models.SubStyle", b =>
+                {
+                    b.HasOne("EcommerceApp.Models.Style", "ParentStyle")
+                        .WithMany("ChildStyle")
                         .HasForeignKey("StyleId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EcommerceApp.Migrations
 {
-    public partial class initialmigration : Migration
+    public partial class migrations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -50,21 +50,6 @@ namespace EcommerceApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SubStyles",
-                columns: table => new
-                {
-                    SubStyleyId = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true),
-                    CreatedAt = table.Column<DateTime>(nullable: false),
-                    UpdatedAt = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SubStyles", x => x.SubStyleyId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -80,6 +65,28 @@ namespace EcommerceApp.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.UserId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SubStyles",
+                columns: table => new
+                {
+                    SubStyleyId = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true),
+                    StyleId = table.Column<int>(nullable: false),
+                    CreatedAt = table.Column<DateTime>(nullable: false),
+                    UpdatedAt = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SubStyles", x => x.SubStyleyId);
+                    table.ForeignKey(
+                        name: "FK_SubStyles_Styles_StyleId",
+                        column: x => x.StyleId,
+                        principalTable: "Styles",
+                        principalColumn: "StyleId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -170,6 +177,11 @@ namespace EcommerceApp.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_ProductStyles_StyleId",
                 table: "ProductStyles",
+                column: "StyleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SubStyles_StyleId",
+                table: "SubStyles",
                 column: "StyleId");
         }
 

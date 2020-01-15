@@ -2,20 +2,45 @@
 @using EcommerceApp.Models
 @model User
 
+<div class="Header">
+    <h1>Welcome to EcommerceApp!</h1>
+    <a href="/">Home</a>
+</div>
+
 <a href="/ContentCreator">or Login</a>
 <h2>Register to this Cool site!</h2>
 
- <form asp-action="Create" asp-controller="Home" method="post">
-<p>First Name: <input asp-for="FirstName"/></p>
-<p>LastName: <input asp-for="LastName"/></p>
-<p>Email: <input asp-for="Email"/></p>
-<p>Password: <input type="password"asp-for="Password"/></p>
-<p>Confirm Password: <input type="password"asp-for="ConfirmPassword"/></p>
-        <button>Submit</button>
-</form>
 <div>
-    <span asp-validation-for="FirstName"></span>
-    <span asp-validation-for="LastName"></span>
-    <span asp-validation-for="Email"></span>
-    <span asp-validation-for="Password"></span>
+    <span style="color:red; asp-validation-for="FirstName"></span>
+    <span style="color:red; asp-validation-for="LastName"></span>
+    <span style="color:red; asp-validation-for="Email"></span>
+    <span style="color:red; asp-validation-for="Password"></span>
 </div>
+
+<form asp-action="Create" asp-controller="Home" method="post">
+    <div class="FirstName">
+    <label asp-for="FirstName"></label>
+    <input asp-for="FirstName" class="form-control" >
+    </div>
+
+    <div class="LastName">
+    <label asp-for="LastName"></label>
+    <input asp-for="LastName" class="form-control">
+    </div>
+
+    <div class="Email">
+    <label asp-for="Email"></label>
+    <input asp-for="Email" class="form-control">
+    </div>
+
+    <div class="Password">
+    <label asp-for="Password"></label>
+    <input asp-for="Password" type="password" class="form-control">
+    </div>
+
+    <div class="ConfirmPassword">
+    <label asp-for="ConfirmPassword"></label>
+    <input asp-for="ConfirmPassword" type="password" class="form-control">
+    </div>
+    <input type="submit" class="btn btn-danger" value="Create">
+</form>
