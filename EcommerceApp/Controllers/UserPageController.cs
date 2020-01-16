@@ -23,16 +23,63 @@ using EcommerceApp.Models;
 
             [HttpGet]      
             [Route("UserPage/{id}")]    
-            public ViewResult DisplayUserPage()
+            public ViewResult DisplayUserPage(int id)
             {            
-                int? IdFromDb = HttpContext.Session.GetInt32("Id"); 
-                var userPageName =  dbContext.Pages.Include(P => P.UsersPage)
-                    .Where(P => P.UserId == IdFromDb);
-                System.Console.WriteLine(userPageName);
-                System.Console.WriteLine("///////////////////////");
-
+                var userPageName =  dbContext.Pages
+                    .Include(P => P.UsersPage)
+                    .Include(P => P.Products)
+                    .FirstOrDefault(P => P.UserId == id);
+                ViewBag.PageName = userPageName.name;
+                ViewBag.id = userPageName.PageId;
+                ViewBag.products = userPageName.Products;
                 return View("Home");
             }
+            [HttpPost]      
+            [Route("CreateProduct/{id}")]    
+            public IActionResult CreateProduct(Product ProductInfo, int id)
+            {
+                ProductInfo.PageId = id;
+                dbContext.Products.Add(ProductInfo);
+                dbContext.SaveChanges();
+
+                return RedirectToAction("DisplayUserPage");
+            }
+            [HttpPost]      
+            [Route("CreateStyle")]    
+            public IActionResult CreateStyle(Style formData)
+            {
+                dbContext.Styles.Add(formData);
+                dbContext.SaveChanges();
+                return RedirectToAction("DisplayStylePage");
+            }
+            [HttpGet]      
+            [Route("DisplayStylePage")]    
+            public IActionResult DisplayStylePage()
+            {
+                return View();
+            }
+            [HttpGet]      
+            [Route("DisplayProductPage/{id}")]    
+            public IActionResult DisplayProductPage(int id)
+            {
+            ViewBag.ProductInfo = dbContext.Products.FirstOrDefault(product => product.ProductId == id);
+            ViewBag.AllStyles = dbContext.Styles.ToList();
+
+                return View();
+            }
+
+            [HttpPost]      
+            [Route("AddStyleToProduct/{id}")]    
+            public IActionResult AddStyleToProduct(int id, int styleid)
+            {
+                var newConnection = new ProductStyle(){ ProductId= id, StyleId= styleid};
+                System.Console.WriteLine("/////////////////////");
+                System.Console.WriteLine(id);
+                dbContext.ProductStyles.Add(newConnection);
+                dbContext.SaveChanges();
+                return Redirect("/DisplayProductPage/" + id);
+            }
+
         }
 
     }

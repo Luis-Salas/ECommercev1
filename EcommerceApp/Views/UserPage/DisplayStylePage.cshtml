@@ -1,0 +1,7 @@
+@using EcommerceApp.Models
+@model Style
+<h1>create a new style for your product</h1>
+<form asp-action="CreateStyle" asp-controller="Userpage" method="post">
+    <p>Style name: <input asp-for="Name"/></p>
+        <button>Submit</button>
+</form>

@@ -1,1 +1,24 @@
-<h1>welcome to . Store</h1>
+<h1>welcome to @ViewBag.PageName</h1> 
+<h2>here are all the products that you can buy</h2>
+@using EcommerceApp.Models
+@model Product
+<a href="/DisplayStylePage">create a style here</a>
+@foreach(var item in @ViewBag.products)
+{
+   <br> <a href="/DisplayProductPage/@item.ProductId">@item.ProductName</a>
+
+}
+<h1 >create a product here</h1>
+ <form asp-action="CreateProduct" asp-controller="Userpage" asp-route-id="@ViewBag.id" method="post">
+<p>Product Name: <input asp-for="ProductName"/></p>
+<p>Product Size: <input asp-for="ProductSize"/></p>
+<p>Product Description: <input asp-for="ProductDescription"/></p>
+<p>Testimonial: <input asp-for="Testimonial"/></p>
+<p>Product Style <input asp-for="ProductStyle"/></p>
+<p>Product Color <input asp-for="ProductColor"/></p>
+<p>Product Quantity <input asp-for="ProductQuantity"/></p>
+@* alternative way to pass id for the Page *@
+@* <input type="hidden" asp-for="PageId" value="@ViewBag.id"/> *@
+
+        <button>Submit</button>
+</form>
