@@ -18,9 +18,7 @@ namespace EcommerceApp.Models
 
         public DbSet<Style> Styles {get;set;}
 
-        public DbSet<Category> Categories {get;set;}
-
-        public DbSet<SubStyle> SubStyles {get;set;}
+        public DbSet<Design> Designs {get;set;}
         public DbSet<ProductStyle> ProductStyles {get;set;}
     }
 }

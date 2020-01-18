@@ -3,6 +3,8 @@
 @using EcommerceApp.Models
 @model Product
 <a href="/DisplayStylePage">create a style here</a>
+<a href="/DisplayDesignPage">create a Design here</a>
+
 @foreach(var item in @ViewBag.products)
 {
    <br> <a href="/DisplayProductPage/@item.ProductId">@item.ProductName</a>

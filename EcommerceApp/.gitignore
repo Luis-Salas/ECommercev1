@@ -1,4 +1,3 @@
 *.json
-obj/
 appsettings.json
 appsettings.Developement.json

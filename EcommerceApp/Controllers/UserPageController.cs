@@ -79,7 +79,12 @@ using EcommerceApp.Models;
                 dbContext.SaveChanges();
                 return Redirect("/DisplayProductPage/" + id);
             }
-
+            [HttpGet]      
+            [Route("DisplayDesignPage")]    
+            public IActionResult DisplayDesignPage()
+            {
+                return View();
+            }
         }
 
     }

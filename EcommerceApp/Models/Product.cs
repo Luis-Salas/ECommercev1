@@ -23,6 +23,9 @@ namespace EcommerceApp.Models
         public string ProductColor {get;set;}
 
         public int ProductQuantity {get;set;}
+        //navigation property to design
+        public int DesignId {get;set;}
+        public Design design {get;set;}
         //navigation property to page
         public int PageId {get;set;}
         public Page ProductsPage {get;set;}
