@@ -2,16 +2,33 @@
 <h2>here are all the products that you can buy</h2>
 @using EcommerceApp.Models
 @model Product
-<a href="/DisplayStylePage">create a style here</a>
-<a href="/DisplayDesignPage">create a Design here</a>
+
+        <div class="header">
+                <a href="/">Home</a><br>
+                <a href="/ContentCreator">seller please register</a><br>
+                <a href="/login">or login</a><br>
+        </div><br>
+        <a href="/DisplayStylePage">create a style here</a> |
+        <a href="/DisplayDesignPage">create a Design here</a>
 
 @foreach(var item in @ViewBag.products)
 {
-   <br> <a href="/DisplayProductPage/@item.ProductId">@item.ProductName</a>
+        <br> <a href="/DisplayProductPage/@item.ProductId">@item.ProductName</a>
 
 }
+
+        <div class="validations">
+                <span style="color:red;" asp-validation-for="ProductName"></span>
+                <span style="color:red;" asp-validation-for="ProductSize"></span>
+                <span style="color:red;" asp-validation-for="ProductDescription"></span>
+                <span style="color:red;" asp-validation-for="Testimonial"></span>
+                <span style="color:red;" asp-validation-for="ProductStyle"></span>
+                <span style="color:red;" asp-validation-for="ProductColor"></span>
+                <span style="color:red;" asp-validation-for="ProductQuantity"></span>
+        </div>
 <h1 >create a product here</h1>
- <form asp-action="CreateProduct" asp-controller="Userpage" asp-route-id="@ViewBag.id" method="post">
+
+<form asp-action="CreateProduct" asp-controller="Userpage" asp-route-id="@ViewBag.id" method="post">
 <p>Product Name: <input asp-for="ProductName"/></p>
 <p>Product Size: <input asp-for="ProductSize"/></p>
 <p>Product Description: <input asp-for="ProductDescription"/></p>

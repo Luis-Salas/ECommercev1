@@ -7,17 +7,21 @@
         <title>Ecomerce App</title>
     </head>
     <body>
-        <h1>Home page </h1>
-        <h2>welcome to ecom @ViewBag.FirstName</h2>
-        <a href="/ContentCreator">seller please register</a>
-        <a href="/login">or login</a>
-        <h4>checkout a sellers store</h4>
+        <div class="header">
+            <h1>Home page </h1>
+            <h2>welcome to EcommerceApp @ViewBag.FirstName</h2>
+            <a href="/">Home</a><br>
+            <a href="/ContentCreator">seller please register</a><br>
+            <a href="/login">or login</a><br>
+        </div>
 
-        @foreach(var user in Model)
-        {
-            <a href="/UserPage/@user.UserId">@user.FirstName @user.LastName</a>
-        }
-
+        <div class="sellers">
+            <h4>checkout a sellers store</h4>
+            @foreach(var user in Model)
+            {
+                <a href="/UserPage/@user.UserId">@user.FirstName @user.LastName</a>
+            }
+        </div>
     </body>
 
 </html>

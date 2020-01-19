@@ -1,8 +1,13 @@
 @using EcommerceApp.Models
 @model Design
 <h2>create a design for your merch here</h2>
-<form asp-action="CreateDesign" asp-controller="UserPage" method="post">
-    time your promotion will run <input asp-for="PromoTime">
-    <input id="Image" title="Upload a image" type="file" name="Image" />
-        <button>Submit</button>
-</form>
+
+        <div class="validations">
+                <span style="color:red;" asp-validation-for="PromoTime"></span>
+        </div>
+
+    <form asp-action="CreateDesign" asp-controller="UserPage" method="post">
+        time your promotion will run <input asp-for="PromoTime">
+        <input id="Image" title="Upload a image" type="file" name="Image" />
+            <button>Submit</button>
+    </form>
