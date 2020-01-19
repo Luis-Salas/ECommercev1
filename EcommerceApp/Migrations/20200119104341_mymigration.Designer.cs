@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcommerceApp.Migrations
 {
     [DbContext(typeof(HomeContext))]
-    [Migration("20200117080205_addingdesign")]
-    partial class addingdesign
+    [Migration("20200119104341_mymigration")]
+    partial class mymigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -18,44 +18,6 @@ namespace EcommerceApp.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
-
-            modelBuilder.Entity("EcommerceApp.Models.Category", b =>
-                {
-                    b.Property<int>("CategoryId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Assesories");
-
-                    b.Property<DateTime>("CreatedAt");
-
-                    b.Property<string>("Outwear");
-
-                    b.Property<string>("Pants");
-
-                    b.Property<int>("ProductId");
-
-                    b.Property<string>("Shorts");
-
-                    b.Property<string>("Sleepwear");
-
-                    b.Property<string>("Socks");
-
-                    b.Property<string>("Sportswear");
-
-                    b.Property<string>("Suits");
-
-                    b.Property<string>("Swinwear");
-
-                    b.Property<string>("Tops");
-
-                    b.Property<string>("Undergarments");
-
-                    b.Property<DateTime>("UpdatedAt");
-
-                    b.HasKey("CategoryId");
-
-                    b.ToTable("Categories");
-                });
 
             modelBuilder.Entity("EcommerceApp.Models.Design", b =>
                 {

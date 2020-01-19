@@ -14,7 +14,7 @@ using EcommerceApp.Models;
         public class UserPageController : Controller  
         {
             private HomeContext dbContext;
-     
+    
             // here we can "inject" our context service into the constructor
             public UserPageController(HomeContext context)
             {

@@ -8,7 +8,7 @@ namespace EcommerceApp.Models
 {
     public class User
     {
-         [Key]
+        [Key]
         public int UserId { get; set;}
         [Required]
         [MinLength(2, ErrorMessage = "First Name must be at least 2 characters")]
