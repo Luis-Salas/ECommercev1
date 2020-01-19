@@ -117,5 +117,12 @@ using EcommerceApp.Models;
             return View("index");
         }
 
+        [HttpGet("logout")]
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index");
+        }
+
         }
     }
