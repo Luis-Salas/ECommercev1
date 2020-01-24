@@ -2,6 +2,8 @@ using System.ComponentModel.DataAnnotations;
 using System;
 using System.Collections.Generic;
 
+using Microsoft.AspNetCore.Http;
+
 
 namespace EcommerceApp.Models
 {
@@ -17,5 +19,11 @@ namespace EcommerceApp.Models
         public List<Product> ParentProduct {get;set;}
         public DateTime CreatedAt {get;set;} = DateTime.Now;
         public DateTime UpdatedAt {get;set;} = DateTime.Now;
+    }
+    public class DesignViewModel
+    {
+        public int PromoTime {get;set;}
+
+        public IFormFile Photo { get; set; }
     }
 }

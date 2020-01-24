@@ -651,7 +651,7 @@
           "lib/netstandard2.0/Microsoft.AspNetCore.Html.Abstractions.dll": {}
         }
       },
-      "Microsoft.AspNetCore.Http/2.2.0": {
+      "Microsoft.AspNetCore.Http/2.2.2": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
@@ -4940,16 +4940,16 @@
         "microsoft.aspnetcore.html.abstractions.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Http/2.2.0": {
-      "sha512": "YogBSMotWPAS/X5967pZ+yyWPQkThxhmzAwyCHCSSldzYBkW5W5d6oPfBaPqQOnSHYTpSOSOkpZoAce0vwb6+A==",
+    "Microsoft.AspNetCore.Http/2.2.2": {
+      "sha512": "BAibpoItxI5puk7YJbIGj95arZueM8B8M5xT1fXBn3hb3L2G3ucrZcYXv1gXdaroLbntUs8qeV8iuBrpjQsrKw==",
       "type": "package",
-      "path": "microsoft.aspnetcore.http/2.2.0",
+      "path": "microsoft.aspnetcore.http/2.2.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/netstandard2.0/Microsoft.AspNetCore.Http.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Http.xml",
-        "microsoft.aspnetcore.http.2.2.0.nupkg.sha512",
+        "microsoft.aspnetcore.http.2.2.2.nupkg.sha512",
         "microsoft.aspnetcore.http.nuspec"
       ]
     },
@@ -12143,29 +12143,30 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
       "Microsoft.AspNetCore.App >= 2.2.0",
+      "Microsoft.AspNetCore.Http >= 2.2.2",
       "Microsoft.AspNetCore.Razor.Design >= 2.2.0",
       "Microsoft.NETCore.App >= 2.2.0",
       "Pomelo.EntityFrameworkCore.MySql >= 2.2.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Luis\\.nuget\\packages\\": {},
+    "C:\\Users\\escar\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Luis\\Documents\\ECommercev1\\EcommerceApp\\EcommerceApp.csproj",
+      "projectUniqueName": "C:\\Users\\escar\\Documents\\ECommercev1\\EcommerceApp\\EcommerceApp.csproj",
       "projectName": "EcommerceApp",
-      "projectPath": "c:\\Users\\Luis\\Documents\\ECommercev1\\EcommerceApp\\EcommerceApp.csproj",
-      "packagesPath": "C:\\Users\\Luis\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Luis\\Documents\\ECommercev1\\EcommerceApp\\obj\\",
+      "projectPath": "C:\\Users\\escar\\Documents\\ECommercev1\\EcommerceApp\\EcommerceApp.csproj",
+      "packagesPath": "C:\\Users\\escar\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\escar\\Documents\\ECommercev1\\EcommerceApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Luis\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\escar\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.2"
@@ -12192,6 +12193,10 @@
             "target": "Package",
             "version": "[2.2.0, )",
             "autoReferenced": true
+          },
+          "Microsoft.AspNetCore.Http": {
+            "target": "Package",
+            "version": "[2.2.2, )"
           },
           "Microsoft.AspNetCore.Razor.Design": {
             "suppressParent": "All",

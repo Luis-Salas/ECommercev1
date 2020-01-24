@@ -6,21 +6,31 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
+
 
 using EcommerceApp.Models;
     namespace EcommerceApp.Controllers 
     {
         public class UserPageController : Controller  
         {
-            private HomeContext dbContext;
+        private HomeContext dbContext;
+        private readonly IHostingEnvironment hostingEnvironment;
+
+ 
+
+        public UserPageController(IHostingEnvironment hostingEnvironment,HomeContext context)
+        {
+            this.hostingEnvironment = hostingEnvironment;
+            dbContext = context;
+
+        }
      
             // here we can "inject" our context service into the constructor
-            public UserPageController(HomeContext context)
-            {
-                dbContext = context;
-            }
-
+    
             [HttpGet]      
             [Route("UserPage/{id}")]    
             public ViewResult DisplayUserPage(int id)
@@ -84,6 +94,43 @@ using EcommerceApp.Models;
             public IActionResult DisplayDesignPage()
             {
                 return View();
+            }
+
+            [HttpPost]      
+            [Route("CreateDesign")]    
+            public IActionResult CreateDesign(DesignViewModel DesignformData)
+            {
+              string uniqueFileName = null;
+
+                // If the Photo property on the incoming model object is not null, then the user
+                // has selected an image to upload.
+                if (DesignformData.Photo != null)
+                {
+                    System.Console.WriteLine("///////////////////////////////////////////");
+                    // The image must be uploaded to the images folder in wwwroot
+                    // To get the path of the wwwroot folder we are using the inject
+                    // HostingEnvironment service provided by ASP.NET Core
+                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "images");
+                    // To make sure the file name is unique we are appending a new
+                    // GUID value and and an underscore to the file name
+                    uniqueFileName = Guid.NewGuid().ToString() + "_" + DesignformData.Photo.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                    // Use CopyTo() method provided by IFormFile interface to
+                    // copy the file to wwwroot/images folder
+                    DesignformData.Photo.CopyTo(new FileStream(filePath, FileMode.Create));
+                }
+
+                Design newDesign = new Design
+                {
+                    PromoTime = DesignformData.PromoTime,
+                    // Store the file name in PhotoPath property of the employee object
+                    // which gets saved to the Employees database table
+                    Image = uniqueFileName
+                };
+
+                dbContext.Designs.Add(newDesign);
+                dbContext.SaveChanges();
+                return RedirectToAction("DisplayStylePage");
             }
         }
 

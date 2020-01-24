@@ -73,7 +73,6 @@ using EcommerceApp.Models;
                         HttpContext.Session.SetString("Email", userInDb.Email);
                         HttpContext.Session.SetString("FirstName", userInDb.FirstName);
                         HttpContext.Session.SetInt32("IdFromDb", userInDb.UserId);
-                        string UserEmail = HttpContext.Session.GetString("Email");
                         return RedirectToAction("Index");
                     } 
                 
@@ -112,7 +111,6 @@ using EcommerceApp.Models;
 
                     return RedirectToAction("Index");    
                 }
-                    
             }
             return View("index");
         }
