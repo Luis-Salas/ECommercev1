@@ -17,6 +17,7 @@ namespace EcommerceApp
     public class Startup
     {
         public IConfiguration Configuration {get;}
+        
          public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -41,7 +42,9 @@ namespace EcommerceApp
                 app.UseDeveloperExceptionPage();
             }
             app.UseSession();
-             app.UseMvc();
+            app.UseMvc();
+            app.UseStaticFiles();
+
         }
     }
 }

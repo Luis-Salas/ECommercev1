@@ -42,13 +42,15 @@ using EcommerceApp.Models;
                 ViewBag.PageName = userPageName.name;
                 ViewBag.id = userPageName.PageId;
                 ViewBag.products = userPageName.Products;
+                ViewBag.AllDesigns =  dbContext.Designs.ToList();
+
                 return View("Home");
             }
             [HttpPost]      
             [Route("CreateProduct/{id}")]    
             public IActionResult CreateProduct(Product ProductInfo, int id)
             {
-                ProductInfo.PageId = id;
+                // ProductInfo.PageId = id;
                 dbContext.Products.Add(ProductInfo);
                 dbContext.SaveChanges();
 

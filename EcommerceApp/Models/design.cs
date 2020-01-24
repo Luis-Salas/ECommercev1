@@ -15,6 +15,7 @@ namespace EcommerceApp.Models
         public string Image {get;set;}
 
         public int PromoTime {get;set;}
+        
         //nav property to Product
         public List<Product> ParentProduct {get;set;}
         public DateTime CreatedAt {get;set;} = DateTime.Now;
