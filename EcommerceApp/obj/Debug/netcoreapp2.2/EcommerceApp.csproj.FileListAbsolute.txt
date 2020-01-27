@@ -58,3 +58,5 @@ C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\Ecom
 C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\EcommerceApp.RazorTargetAssemblyInfo.cs
 C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\EcommerceApp.Views.pdb
 C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\EcommerceApp.csproj.CopyComplete
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\Razor\Views\Home\Search.g.cshtml.cs
+C:\Users\Song Chan\Desktop\ECommercev1\EcommerceApp\obj\Debug\netcoreapp2.2\Razor\Views\Home\SearchResult.g.cshtml.cs

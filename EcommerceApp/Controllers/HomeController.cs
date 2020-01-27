@@ -13,13 +13,13 @@ using EcommerceApp.Models;
     {
         public class HomeController : Controller  
         {
-             private HomeContext dbContext;
-     
+            private HomeContext dbContext;
             // here we can "inject" our context service into the constructor
             public HomeController(HomeContext context)
             {
                 dbContext = context;
             }
+
             [HttpGet]      
             [Route("")]     
             public ViewResult Index()
@@ -117,7 +117,34 @@ using EcommerceApp.Models;
             return View("index");
         }
 
-        [HttpGet("logout")]
+        
+        [HttpGet("Search")]
+        public IActionResult Search()
+        {   
+            List<Product> AllProduct = dbContext.Products.ToList();
+            List<Product> OneProduct = dbContext.Products.ToList();
+            for(var i=0; i<=10; i++){
+                Console.WriteLine(AllProduct);
+            }
+            return View("search");
+
+        }
+
+        [HttpPost("Searching")]
+        public IActionResult Searching(string ProductName)
+        {
+            List<Product> AllProduct = dbContext.Products.ToList();
+            List<Product> OneProduct = dbContext.Products.Where(u => u.ProductName == ProductName).ToList();
+            foreach(var obj in OneProduct){
+                Console.WriteLine(obj.ProductName);
+                Console.WriteLine(obj.ProductDescription);
+            }
+            return RedirectToAction("Search");
+
+        }
+
+
+        [HttpGet("Logout")]
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
