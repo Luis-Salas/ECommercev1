@@ -26,11 +26,19 @@ namespace EcommerceApp.Models
         //navigation property to design
         public int DesignId {get;set;}
         public Design design {get;set;}
+        
         //navigation property to page
         public int PageId {get;set;}
         public Page ProductsPage {get;set;}
+
         //navigation property to productstyle
         public List<ProductStyle> ProductsStyles { get; set; }
+
+
+        //navigational property to Order
+        public int OrderId {get;set;}
+        public Order LinkToOrderObject {get;set;}
+
 
         public DateTime CreatedAt {get;set;} = DateTime.Now;
         public DateTime UpdatedAt {get;set;} = DateTime.Now;
