@@ -43,7 +43,7 @@ using EcommerceApp.Models;
                 ViewBag.id = userPageName.PageId;
                 ViewBag.products = userPageName.Products;
                 ViewBag.AllDesigns =  dbContext.Designs.ToList();
-
+            
                 return View("Home");
             }
             [HttpPost]      
@@ -51,6 +51,48 @@ using EcommerceApp.Models;
             public IActionResult CreateProduct(Product ProductInfo, int id)
             {
                 // ProductInfo.PageId = id;
+                if(HttpContext.Session.GetString("Email") != null){
+                    if(dbContext.Orders.FirstOrDefault(orderObject => orderObject.OrderId == 1) != null){
+
+                        ProductInfo.OrderId = 1;
+                    }
+                    else
+                    {
+                        Order newOrder = new Order
+                        {
+                            OrderId = 1,
+                            orderNumber = "1",
+                            total = 0,
+                            status = "This is the default Order",
+                        };
+                        dbContext.Orders.Add(newOrder);
+                        dbContext.SaveChanges();
+                        ProductInfo.OrderId = 1;
+
+                    }
+                }
+                //this section should go in the add cart button
+                // else
+                // {
+                //     //create a new order for the guest user
+                //      Order newOrder = new Order
+                //         {
+                //             orderNumber = HttpContext.Session.GetString("guid"),
+                //             // total = Product.Price,
+                //             status = "not processed",
+                //         };
+                //         dbContext.Orders.Add(newOrder);
+                //         dbContext.SaveChanges();
+
+                //     //search db for the product
+                //     Product ProductFromDB = dbContext.Products.FirstOrDefault(p => p.ProductId == ProductIdFromForm);
+                //     //search for the order with guid so we  can get the id of order
+                //     Order OrderFromdb = dbContext.Orders.FirstOrDefault(o => o.orderNumber == HttpContext.Session.GetString("guid"));
+                //     //point product to order
+                //     ProductFromDB.OrderId = OrderFromdb.OrderId;
+
+
+                // }
                 dbContext.Products.Add(ProductInfo);
                 dbContext.SaveChanges();
 

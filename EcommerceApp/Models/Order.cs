@@ -10,7 +10,7 @@ namespace EcommerceApp.Models
         public int OrderId {get;set;}
         [Required]
 
-        public int orderNumber {get;set;}
+        public string orderNumber {get;set;}
         [Required]
 
         public int total {get;set;}

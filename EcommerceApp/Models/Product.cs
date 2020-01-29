@@ -26,7 +26,7 @@ namespace EcommerceApp.Models
         //navigation property to design
         public int DesignId {get;set;}
         public Design design {get;set;}
-        
+
         //navigation property to page
         public int PageId {get;set;}
         public Page ProductsPage {get;set;}
@@ -36,7 +36,7 @@ namespace EcommerceApp.Models
 
 
         //navigational property to Order
-        public int OrderId {get;set;}
+        public int? OrderId {get;set;}
         public Order LinkToOrderObject {get;set;}
 
 
