@@ -2999,6 +2999,11 @@
       "FilePath": "c:\\Users\\escar\\Documents\\ECommercev1\\EcommerceApp\\Views\\UserPage\\DisplayDesignPage.cshtml",
       "TargetPath": "Views\\UserPage\\DisplayDesignPage.cshtml",
       "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\escar\\Documents\\ECommercev1\\EcommerceApp\\Views\\Home\\ShoppingCart.cshtml",
+      "TargetPath": "Views\\Home\\ShoppingCart.cshtml",
+      "FileKind": "mvc"
     }
   ],
   "SerializationFormat": "0.2"

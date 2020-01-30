@@ -42,9 +42,10 @@ namespace EcommerceApp.Migrations
 
                     b.Property<DateTime>("CreatedAt");
 
-                    b.Property<DateTime>("UpdatedAt");
+                    b.Property<string>("OrderNumber")
+                        .IsRequired();
 
-                    b.Property<int>("orderNumber");
+                    b.Property<DateTime>("UpdatedAt");
 
                     b.Property<string>("status");
 
@@ -88,7 +89,7 @@ namespace EcommerceApp.Migrations
 
                     b.Property<int>("DesignId");
 
-                    b.Property<int>("OrderId");
+                    b.Property<int?>("OrderId");
 
                     b.Property<int>("PageId");
 
@@ -117,6 +118,19 @@ namespace EcommerceApp.Migrations
                     b.HasIndex("PageId");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("EcommerceApp.Models.ProductOrders", b =>
+                {
+                    b.Property<int>("ProductId");
+
+                    b.Property<int>("OrderId");
+
+                    b.HasKey("ProductId", "OrderId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("ProductOrders");
                 });
 
             modelBuilder.Entity("EcommerceApp.Models.ProductStyle", b =>
@@ -189,14 +203,26 @@ namespace EcommerceApp.Migrations
                         .HasForeignKey("DesignId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("EcommerceApp.Models.Order", "LinkToOrderObject")
+                    b.HasOne("EcommerceApp.Models.Order")
                         .WithMany("Products")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("OrderId");
 
                     b.HasOne("EcommerceApp.Models.Page", "ProductsPage")
                         .WithMany("Products")
                         .HasForeignKey("PageId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("EcommerceApp.Models.ProductOrders", b =>
+                {
+                    b.HasOne("EcommerceApp.Models.Order", "Order")
+                        .WithMany("OrderedProducts")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("EcommerceApp.Models.Product", "Product")
+                        .WithMany("Buying")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

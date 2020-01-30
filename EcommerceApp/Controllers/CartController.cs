@@ -21,32 +21,39 @@ using EcommerceApp.Models;
                 dbContext = context;
             }
             [HttpPost]      
-            [Route("addItemToCart")]     
-            public IActionResult addItemToCart()
+            [Route("addItemToCart/{id}")]     
+            public IActionResult addItemToCart(int id)
             {
 
-                        //this section should go in the add cart button
-                // else
-                // {
-                //     //create a new order for the guest user
-                //      Order newOrder = new Order
-                //         {
-                //             orderNumber = HttpContext.Session.GetString("guid"),
-                //             // total = Product.Price,
-                //             status = "not processed",
-                //         };
-                //         dbContext.Orders.Add(newOrder);
-                //         dbContext.SaveChanges();
+                //this section should go in the add cart button
 
-                //     //search db for the product
-                //     Product ProductFromDB = dbContext.Products.FirstOrDefault(p => p.ProductId == ProductIdFromForm);
-                //     //search for the order with guid so we  can get the id of order
-                //     Order OrderFromdb = dbContext.Orders.FirstOrDefault(o => o.orderNumber == HttpContext.Session.GetString("guid"));
-                //     //point product to order
-                //     ProductFromDB.OrderId = OrderFromdb.OrderId;
+                //create a new order for the guest user
+                Order newOrder = new Order
+                    {
+                        OrderNumber = HttpContext.Session.GetString("guid"),
+                        // total = Product.Price,
+                        status = "not processed",
+                    };
+                    dbContext.Orders.Add(newOrder);
+                    dbContext.SaveChanges();
+
+                //search db for the product
+                Product ProductFromDB = dbContext.Products.FirstOrDefault(p => p.ProductId == id);
+                //search for the order with guid so we  can get the id of order
+                Order OrderFromdb = dbContext.Orders.FirstOrDefault(o => o.OrderNumber == HttpContext.Session.GetString("guid"));
+                //point product to order
 
 
-                // }
+                ProductOrders newProductOrder = new ProductOrders
+                    {
+                        OrderId = OrderFromdb.OrderId,
+                        // total = Product.Price,
+                        ProductId = ProductFromDB.ProductId,
+                    };
+                dbContext.ProductOrders.Add(newProductOrder);
+                dbContext.SaveChanges();
+
+                
                 System.Console.WriteLine("//////////////////////////");
                 return RedirectToAction("DisplayProductPage","UserPage", new{id = 1} );
             }

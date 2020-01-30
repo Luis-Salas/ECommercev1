@@ -35,7 +35,6 @@
         <p>Product Quantity <input asp-for="ProductQuantity"/></p>
         <input type="hidden" asp-for="PageId" value="@ViewBag.id"/>
         <input id="ProdForm" type="hidden" asp-for="DesignId" value="@ViewBag.id"/>
-
         @foreach(var design in @ViewBag.AllDesigns)
         {
                 <img height="300px;"src="~/images/@design.Image" id="@design.DesignId">
@@ -64,7 +63,6 @@ $( document ).ready(function() {
                 }
         });
 });
-
 </script>
 </body>
 </html>
