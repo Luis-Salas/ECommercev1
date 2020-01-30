@@ -13,127 +13,178 @@ using System.IO;
 
 
 using EcommerceApp.Models;
-    namespace EcommerceApp.Controllers 
+namespace EcommerceApp.Controllers
+{
+    public class UserPageController : Controller
     {
-        public class UserPageController : Controller  
-        {
         private HomeContext dbContext;
         private readonly IHostingEnvironment hostingEnvironment;
 
- 
 
-        public UserPageController(IHostingEnvironment hostingEnvironment,HomeContext context)
+
+        public UserPageController(IHostingEnvironment hostingEnvironment, HomeContext context)
         {
             this.hostingEnvironment = hostingEnvironment;
             dbContext = context;
 
         }
-     
-            // here we can "inject" our context service into the constructor
-    
-            [HttpGet]      
-            [Route("UserPage/{id}")]    
-            public ViewResult DisplayUserPage(int id)
-            {            
-                var userPageName =  dbContext.Pages
-                    .Include(P => P.UsersPage)
-                    .Include(P => P.Products)
-                    .FirstOrDefault(P => P.UserId == id);
-                ViewBag.PageName = userPageName.name;
-                ViewBag.id = userPageName.PageId;
-                ViewBag.products = userPageName.Products;
-                ViewBag.AllDesigns =  dbContext.Designs.ToList();
 
-                return View("Home");
-            }
-            [HttpPost]      
-            [Route("CreateProduct/{id}")]    
-            public IActionResult CreateProduct(Product ProductInfo, int id)
-            {
-                // ProductInfo.PageId = id;
-                dbContext.Products.Add(ProductInfo);
-                dbContext.SaveChanges();
+        // here we can "inject" our context service into the constructor
 
-                return RedirectToAction("DisplayUserPage");
-            }
-            [HttpPost]      
-            [Route("CreateStyle")]    
-            public IActionResult CreateStyle(Style formData)
+        [HttpGet]
+        [Route("UserPage/{id}")]
+        public ViewResult DisplayUserPage(int id)
+        {
+            var userPageName = dbContext.Pages
+                .Include(P => P.UsersPage)
+                .Include(P => P.Products)
+                .FirstOrDefault(P => P.UserId == id);
+            ViewBag.PageName = userPageName.name;
+            ViewBag.id = userPageName.PageId;
+            ViewBag.products = userPageName.Products;
+            ViewBag.AllDesigns = dbContext.Designs.ToList();
+
+            return View("Home");
+        }
+        [HttpPost]
+        [Route("CreateProduct/{id}")]
+        public IActionResult CreateProduct(Product ProductInfo, int id)
+        {
+            // ProductInfo.PageId = id;
+            if (HttpContext.Session.GetString("Email") != null)
             {
-                dbContext.Styles.Add(formData);
-                dbContext.SaveChanges();
-                return RedirectToAction("DisplayStylePage");
+                if (dbContext.Orders.FirstOrDefault(orderObject => orderObject.OrderId == 1) != null)
+                {
+                    ProductInfo.OrderId = 1;
+                }
+                else
+                {
+                    Order newOrder = new Order
+                    {
+                        OrderId = 1,
+                        OrderNumber = "1",
+                        total = 0,
+                        status = "This is a default order"
+
+                    };
+                    dbContext.Orders.Add(newOrder);
+                    dbContext.SaveChanges();
+                }
+                // }
+                // this section should go in the add cart button
+                // else
+                // {
+                // Created a new order for the guest user
+                // Order newOrder = new Order
+                // {
+                // OrderNumber = HttpContext.Session.GetString("guid"),
+                // Total = Product.Price,
+                // Status = "Not proccesed"
+
+                // };
+                // dbContext.Orders.Add(newOrder);
+                // dbContext.SaveChanges();
+
+                // SearchOption db for the product
+                // Product ProductFromDB = dbContext.Products.FirstOrDefault(p => p.ProductId == ProductIdFromForm);
+                // Search for the order with guid so we can get the id of the order
+                // Order OrderFromdb = dbContext.Orders.FirstOrDefault(o => o.OrderNumber == HttpContext.Session.GetString("guid"));
+                // point product to order
+                // ProductFromDB.OrderId = OrderFromdb.OrderId;
             }
-            [HttpGet]      
-            [Route("DisplayStylePage")]    
-            public IActionResult DisplayStylePage()
-            {
-                return View();
-            }
-            [HttpGet]      
-            [Route("DisplayProductPage/{id}")]    
-            public IActionResult DisplayProductPage(int id)
-            {
+            dbContext.Products.Add(ProductInfo);
+            dbContext.SaveChanges();
+
+            return RedirectToAction("DisplayUserPage");
+        }
+        [HttpPost]
+        [Route("CreateStyle")]
+        public IActionResult CreateStyle(Style formData)
+        {
+            dbContext.Styles.Add(formData);
+            dbContext.SaveChanges();
+            return RedirectToAction("DisplayStylePage");
+        }
+        [HttpGet]
+        [Route("DisplayStylePage")]
+        public IActionResult DisplayStylePage()
+        {
+            return View();
+        }
+        [HttpGet]
+        [Route("DisplayProductPage/{id}")]
+        public IActionResult DisplayProductPage(int id)
+        {
             ViewBag.ProductInfo = dbContext.Products.FirstOrDefault(product => product.ProductId == id);
             ViewBag.AllStyles = dbContext.Styles.ToList();
 
-                return View();
-            }
-
-            [HttpPost]      
-            [Route("AddStyleToProduct/{id}")]    
-            public IActionResult AddStyleToProduct(int id, int styleid)
-            {
-                var newConnection = new ProductStyle(){ ProductId= id, StyleId= styleid};
-                System.Console.WriteLine("/////////////////////");
-                System.Console.WriteLine(id);
-                dbContext.ProductStyles.Add(newConnection);
-                dbContext.SaveChanges();
-                return Redirect("/DisplayProductPage/" + id);
-            }
-            [HttpGet]      
-            [Route("DisplayDesignPage")]    
-            public IActionResult DisplayDesignPage()
-            {
-                return View();
-            }
-
-            [HttpPost]      
-            [Route("CreateDesign")]    
-            public IActionResult CreateDesign(DesignViewModel DesignformData)
-            {
-              string uniqueFileName = null;
-
-                // If the Photo property on the incoming model object is not null, then the user
-                // has selected an image to upload.
-                if (DesignformData.Photo != null)
-                {
-                    System.Console.WriteLine("///////////////////////////////////////////");
-                    // The image must be uploaded to the images folder in wwwroot
-                    // To get the path of the wwwroot folder we are using the inject
-                    // HostingEnvironment service provided by ASP.NET Core
-                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "images");
-                    // To make sure the file name is unique we are appending a new
-                    // GUID value and and an underscore to the file name
-                    uniqueFileName = Guid.NewGuid().ToString() + "_" + DesignformData.Photo.FileName;
-                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                    // Use CopyTo() method provided by IFormFile interface to
-                    // copy the file to wwwroot/images folder
-                    DesignformData.Photo.CopyTo(new FileStream(filePath, FileMode.Create));
-                }
-
-                Design newDesign = new Design
-                {
-                    PromoTime = DesignformData.PromoTime,
-                    // Store the file name in PhotoPath property of the employee object
-                    // which gets saved to the Employees database table
-                    Image = uniqueFileName
-                };
-
-                dbContext.Designs.Add(newDesign);
-                dbContext.SaveChanges();
-                return RedirectToAction("DisplayStylePage");
-            }
+            return View();
         }
 
+        [HttpPost]
+        [Route("AddStyleToProduct/{id}")]
+        public IActionResult AddStyleToProduct(int id, int styleid)
+        {
+
+            var newConnection = new ProductStyle() { ProductId = id, StyleId = styleid };
+            System.Console.WriteLine("/////////////////////");
+            System.Console.WriteLine(id);
+            dbContext.ProductStyles.Add(newConnection);
+            dbContext.SaveChanges();
+            return Redirect("/DisplayProductPage/" + id);
+        }
+        [HttpGet]
+        [Route("DisplayDesignPage")]
+        public IActionResult DisplayDesignPage()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Route("CreateDesign")]
+        public IActionResult CreateDesign(DesignViewModel DesignformData)
+        {
+            string uniqueFileName = null;
+
+            // If the Photo property on the incoming model object is not null, then the user
+            // has selected an image to upload.
+            if (DesignformData.Photo != null)
+            {
+                System.Console.WriteLine("///////////////////////////////////////////");
+                // The image must be uploaded to the images folder in wwwroot
+                // To get the path of the wwwroot folder we are using the inject
+                // HostingEnvironment service provided by ASP.NET Core
+                string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "images");
+                // To make sure the file name is unique we are appending a new
+                // GUID value and and an underscore to the file name
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + DesignformData.Photo.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                // Use CopyTo() method provided by IFormFile interface to
+                // copy the file to wwwroot/images folder
+                DesignformData.Photo.CopyTo(new FileStream(filePath, FileMode.Create));
+            }
+
+            Design newDesign = new Design
+            {
+                PromoTime = DesignformData.PromoTime,
+                // Store the file name in PhotoPath property of the employee object
+                // which gets saved to the Employees database table
+                Image = uniqueFileName
+            };
+
+            dbContext.Designs.Add(newDesign);
+            dbContext.SaveChanges();
+            return RedirectToAction("DisplayStylePage");
+        }
+        // public string generateID()
+        // {
+        //     var guid = Guid.NewGuid();
+        //     return Guid.NewGuid().ToString();
+        // }
+        // public string generateID(string sourceUrl)
+        // {
+        //     return string.Format("{0}_{1:N}", sourceUrl, Guid.NewGuid());
+        // }
     }
+
+}

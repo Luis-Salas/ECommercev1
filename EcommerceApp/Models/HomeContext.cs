@@ -20,5 +20,6 @@ namespace EcommerceApp.Models
 
         public DbSet<Design> Designs {get;set;}
         public DbSet<ProductStyle> ProductStyles {get;set;}
+        public DbSet<Order> Orders {get; set;}
     }
 }

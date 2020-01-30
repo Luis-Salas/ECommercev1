@@ -35,6 +35,27 @@ namespace EcommerceApp.Migrations
                     b.ToTable("Designs");
                 });
 
+            modelBuilder.Entity("EcommerceApp.Models.Order", b =>
+                {
+                    b.Property<int>("OrderId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreatedAt");
+
+                    b.Property<string>("OrderNumber")
+                        .IsRequired();
+
+                    b.Property<string>("Status");
+
+                    b.Property<int>("Total");
+
+                    b.Property<DateTime>("UpdatedAt");
+
+                    b.HasKey("OrderId");
+
+                    b.ToTable("Orders");
+                });
+
             modelBuilder.Entity("EcommerceApp.Models.Page", b =>
                 {
                     b.Property<int>("PageId")
@@ -68,6 +89,8 @@ namespace EcommerceApp.Migrations
 
                     b.Property<int>("DesignId");
 
+                    b.Property<int>("OrderId");
+
                     b.Property<int>("PageId");
 
                     b.Property<string>("ProductColor");
@@ -90,9 +113,29 @@ namespace EcommerceApp.Migrations
 
                     b.HasIndex("DesignId");
 
+                    b.HasIndex("OrderId");
+
                     b.HasIndex("PageId");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("EcommerceApp.Models.ProductOrders", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("OrderId");
+
+                    b.Property<int?>("ProductId1");
+
+                    b.HasKey("ProductId");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId1");
+
+                    b.ToTable("ProductOrders");
                 });
 
             modelBuilder.Entity("EcommerceApp.Models.ProductStyle", b =>
@@ -165,10 +208,27 @@ namespace EcommerceApp.Migrations
                         .HasForeignKey("DesignId")
                         .OnDelete(DeleteBehavior.Cascade);
 
+                    b.HasOne("EcommerceApp.Models.Order", "LinkToOrderObject")
+                        .WithMany("Products")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("EcommerceApp.Models.Page", "ProductsPage")
                         .WithMany("Products")
                         .HasForeignKey("PageId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("EcommerceApp.Models.ProductOrders", b =>
+                {
+                    b.HasOne("EcommerceApp.Models.Order", "Order")
+                        .WithMany("OrderedProducts")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("EcommerceApp.Models.Product", "Product")
+                        .WithMany("Buying")
+                        .HasForeignKey("ProductId1");
                 });
 
             modelBuilder.Entity("EcommerceApp.Models.ProductStyle", b =>

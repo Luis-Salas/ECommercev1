@@ -18,3 +18,7 @@
     </select>
     <button>Submit</button>
 </form>
+<form asp-action="Cart" asp-controller="ShoppingCart" asp-route-id="@ViewBag.ProductInfo.ProductId" method="post">
+    <button>Add To Cart</button>
+</form>
+

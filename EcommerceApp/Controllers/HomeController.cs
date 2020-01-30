@@ -114,6 +114,11 @@ using EcommerceApp.Models;
             }
             return View("index");
         }
+          [HttpGet("ShoppingCart")]
+        public IActionResult ShoppingCart()
+        {
+            return View("ShoppingCart");
+        }
 
         }
     }
