@@ -27,6 +27,12 @@ using EcommerceApp.Models;
             List<User> AllUsers = dbContext.Users.ToList();
             ViewBag.FirstName = HttpContext.Session.GetString("FirstName");
             System.Console.WriteLine(HttpContext.Session.GetString("FirstName"));
+            var guid = Guid.NewGuid();
+            string castedGUID = guid.ToString();
+            HttpContext.Session.SetString("guid", castedGUID);
+
+            System.Console.WriteLine(castedGUID);
+            System.Console.WriteLine("/////////////////////////////////////");
                 return View("index", AllUsers);
             }
 
@@ -73,7 +79,6 @@ using EcommerceApp.Models;
                         HttpContext.Session.SetString("Email", userInDb.Email);
                         HttpContext.Session.SetString("FirstName", userInDb.FirstName);
                         HttpContext.Session.SetInt32("IdFromDb", userInDb.UserId);
-                        string UserEmail = HttpContext.Session.GetString("Email");
                         return RedirectToAction("Index");
                     } 
                 
@@ -112,9 +117,13 @@ using EcommerceApp.Models;
 
                     return RedirectToAction("Index");    
                 }
-                    
             }
             return View("index");
+        }
+          [HttpGet("ShoppingCart")]
+        public IActionResult ShoppingCart()
+        {
+            return View("ShoppingCart");
         }
 
         }

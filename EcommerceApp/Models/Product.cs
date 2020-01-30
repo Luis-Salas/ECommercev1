@@ -23,11 +23,18 @@ namespace EcommerceApp.Models
         public string ProductColor {get;set;}
 
         public int ProductQuantity {get;set;}
+        //navigation property to design
+        public int DesignId {get;set;}
+        public Design design {get;set;}
+
         //navigation property to page
         public int PageId {get;set;}
         public Page ProductsPage {get;set;}
+
         //navigation property to productstyle
-        public List<ProductStyle> ProductsStyles { get; set; }
+        public List<ProductStyle> ProductsStyles {get; set;}
+        //navigation property to productOrder
+        public List<ProductOrders> Buying {get; set;}
 
         public DateTime CreatedAt {get;set;} = DateTime.Now;
         public DateTime UpdatedAt {get;set;} = DateTime.Now;

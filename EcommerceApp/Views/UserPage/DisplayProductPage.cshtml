@@ -1,0 +1,25 @@
+
+<h1>info for this item</h1>
+<p>name: @ViewBag.ProductInfo.ProductName</p>
+<p>size: @ViewBag.ProductInfo.ProductSize</p>
+<p>Color: @ViewBag.ProductInfo.ProductColor</p>
+<p>Quantity: @ViewBag.ProductInfo.ProductQuantity</p>
+@ViewBag.ProductInfo.ProductId
+<h1>add a style to this item</h1>
+
+<form asp-action="AddStyleToProduct" asp-controller="Userpage" asp-route-id="@ViewBag.ProductInfo.ProductId" method="post">
+    <select name="styleid">
+    @foreach(var style in @ViewBag.AllStyles) 
+    {
+        <option value="@style.StyleId">
+        @style.Name
+        </option>
+    }
+    </select>
+    <button>Submit</button>
+</form>
+
+<form asp-action="addItemToCart" asp-controller="Cart" asp-route-id="@ViewBag.ProductInfo.ProductId" method="post">
+   
+    <button>add this item to the cart</button>
+</form>

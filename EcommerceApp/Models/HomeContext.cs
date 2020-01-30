@@ -9,7 +9,10 @@ namespace EcommerceApp.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ProductStyle>().HasKey(sc => new { sc.ProductId, sc.StyleId });
+            modelBuilder.Entity<ProductOrders>().HasKey(sc => new { sc.ProductId, sc.OrderId });
+
         }
+    
         public DbSet<User> Users {get;set;}
 
         public DbSet<Page> Pages {get;set;}
@@ -18,9 +21,11 @@ namespace EcommerceApp.Models
 
         public DbSet<Style> Styles {get;set;}
 
-        public DbSet<Category> Categories {get;set;}
-
-        public DbSet<SubStyle> SubStyles {get;set;}
+        public DbSet<Design> Designs {get;set;}
         public DbSet<ProductStyle> ProductStyles {get;set;}
+        public DbSet<Order> Orders {get;set;}
+        public DbSet<ProductOrders> ProductOrders  {get;set;}
+
+
     }
 }

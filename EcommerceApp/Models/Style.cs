@@ -15,9 +15,6 @@ namespace EcommerceApp.Models
         //nav property to ProductStyle
         public List<ProductStyle> BaseProduct {get;set;}
 
-        //nav Property to SubStyle
-        public List<SubStyle> ChildStyle {get;set;}
-
         public DateTime CreatedAt {get;set;} = DateTime.Now;
         public DateTime UpdatedAt {get;set;} = DateTime.Now;
     }

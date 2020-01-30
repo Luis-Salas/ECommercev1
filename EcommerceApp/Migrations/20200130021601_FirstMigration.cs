@@ -4,34 +4,41 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EcommerceApp.Migrations
 {
-    public partial class initialmigration : Migration
+    public partial class FirstMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Categories",
+                name: "Designs",
                 columns: table => new
                 {
-                    CategoryId = table.Column<int>(nullable: false)
+                    DesignId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Outwear = table.Column<string>(nullable: true),
-                    Pants = table.Column<string>(nullable: true),
-                    Shorts = table.Column<string>(nullable: true),
-                    Sleepwear = table.Column<string>(nullable: true),
-                    Socks = table.Column<string>(nullable: true),
-                    Sportswear = table.Column<string>(nullable: true),
-                    Suits = table.Column<string>(nullable: true),
-                    Swinwear = table.Column<string>(nullable: true),
-                    Tops = table.Column<string>(nullable: true),
-                    Undergarments = table.Column<string>(nullable: true),
-                    Assesories = table.Column<string>(nullable: true),
-                    ProductId = table.Column<int>(nullable: false),
+                    Image = table.Column<string>(nullable: true),
+                    PromoTime = table.Column<int>(nullable: false),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     UpdatedAt = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categories", x => x.CategoryId);
+                    table.PrimaryKey("PK_Designs", x => x.DesignId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    OrderId = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    OrderNumber = table.Column<string>(nullable: false),
+                    total = table.Column<int>(nullable: false),
+                    status = table.Column<string>(nullable: true),
+                    CreatedAt = table.Column<DateTime>(nullable: false),
+                    UpdatedAt = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.OrderId);
                 });
 
             migrationBuilder.CreateTable(
@@ -47,21 +54,6 @@ namespace EcommerceApp.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Styles", x => x.StyleId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "SubStyles",
-                columns: table => new
-                {
-                    SubStyleyId = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true),
-                    CreatedAt = table.Column<DateTime>(nullable: false),
-                    UpdatedAt = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SubStyles", x => x.SubStyleyId);
                 });
 
             migrationBuilder.CreateTable(
@@ -118,18 +110,56 @@ namespace EcommerceApp.Migrations
                     ProductStyle = table.Column<string>(nullable: true),
                     ProductColor = table.Column<string>(nullable: true),
                     ProductQuantity = table.Column<int>(nullable: false),
+                    DesignId = table.Column<int>(nullable: false),
                     PageId = table.Column<int>(nullable: false),
                     CreatedAt = table.Column<DateTime>(nullable: false),
-                    UpdatedAt = table.Column<DateTime>(nullable: false)
+                    UpdatedAt = table.Column<DateTime>(nullable: false),
+                    OrderId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.ProductId);
                     table.ForeignKey(
+                        name: "FK_Products_Designs_DesignId",
+                        column: x => x.DesignId,
+                        principalTable: "Designs",
+                        principalColumn: "DesignId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Products_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
+                        principalColumn: "OrderId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
                         name: "FK_Products_Pages_PageId",
                         column: x => x.PageId,
                         principalTable: "Pages",
                         principalColumn: "PageId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductOrders",
+                columns: table => new
+                {
+                    ProductId = table.Column<int>(nullable: false),
+                    OrderId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductOrders", x => new { x.ProductId, x.OrderId });
+                    table.ForeignKey(
+                        name: "FK_ProductOrders_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
+                        principalColumn: "OrderId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProductOrders_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "ProductId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -163,6 +193,21 @@ namespace EcommerceApp.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ProductOrders_OrderId",
+                table: "ProductOrders",
+                column: "OrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_DesignId",
+                table: "Products",
+                column: "DesignId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_OrderId",
+                table: "Products",
+                column: "OrderId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Products_PageId",
                 table: "Products",
                 column: "PageId");
@@ -176,19 +221,22 @@ namespace EcommerceApp.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "ProductOrders");
 
             migrationBuilder.DropTable(
                 name: "ProductStyles");
-
-            migrationBuilder.DropTable(
-                name: "SubStyles");
 
             migrationBuilder.DropTable(
                 name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Styles");
+
+            migrationBuilder.DropTable(
+                name: "Designs");
+
+            migrationBuilder.DropTable(
+                name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "Pages");

@@ -17,42 +17,43 @@ namespace EcommerceApp.Migrations
                 .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("EcommerceApp.Models.Category", b =>
+            modelBuilder.Entity("EcommerceApp.Models.Design", b =>
                 {
-                    b.Property<int>("CategoryId")
+                    b.Property<int>("DesignId")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Assesories");
 
                     b.Property<DateTime>("CreatedAt");
 
-                    b.Property<string>("Outwear");
+                    b.Property<string>("Image");
 
-                    b.Property<string>("Pants");
-
-                    b.Property<int>("ProductId");
-
-                    b.Property<string>("Shorts");
-
-                    b.Property<string>("Sleepwear");
-
-                    b.Property<string>("Socks");
-
-                    b.Property<string>("Sportswear");
-
-                    b.Property<string>("Suits");
-
-                    b.Property<string>("Swinwear");
-
-                    b.Property<string>("Tops");
-
-                    b.Property<string>("Undergarments");
+                    b.Property<int>("PromoTime");
 
                     b.Property<DateTime>("UpdatedAt");
 
-                    b.HasKey("CategoryId");
+                    b.HasKey("DesignId");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Designs");
+                });
+
+            modelBuilder.Entity("EcommerceApp.Models.Order", b =>
+                {
+                    b.Property<int>("OrderId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreatedAt");
+
+                    b.Property<string>("OrderNumber")
+                        .IsRequired();
+
+                    b.Property<DateTime>("UpdatedAt");
+
+                    b.Property<string>("status");
+
+                    b.Property<int>("total");
+
+                    b.HasKey("OrderId");
+
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("EcommerceApp.Models.Page", b =>
@@ -86,6 +87,10 @@ namespace EcommerceApp.Migrations
 
                     b.Property<DateTime>("CreatedAt");
 
+                    b.Property<int>("DesignId");
+
+                    b.Property<int?>("OrderId");
+
                     b.Property<int>("PageId");
 
                     b.Property<string>("ProductColor");
@@ -106,9 +111,26 @@ namespace EcommerceApp.Migrations
 
                     b.HasKey("ProductId");
 
+                    b.HasIndex("DesignId");
+
+                    b.HasIndex("OrderId");
+
                     b.HasIndex("PageId");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("EcommerceApp.Models.ProductOrders", b =>
+                {
+                    b.Property<int>("ProductId");
+
+                    b.Property<int>("OrderId");
+
+                    b.HasKey("ProductId", "OrderId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("ProductOrders");
                 });
 
             modelBuilder.Entity("EcommerceApp.Models.ProductStyle", b =>
@@ -138,26 +160,6 @@ namespace EcommerceApp.Migrations
                     b.HasKey("StyleId");
 
                     b.ToTable("Styles");
-                });
-
-            modelBuilder.Entity("EcommerceApp.Models.SubStyle", b =>
-                {
-                    b.Property<int>("SubStyleyId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("CreatedAt");
-
-                    b.Property<string>("Name");
-
-                    b.Property<int>("StyleId");
-
-                    b.Property<DateTime>("UpdatedAt");
-
-                    b.HasKey("SubStyleyId");
-
-                    b.HasIndex("StyleId");
-
-                    b.ToTable("SubStyles");
                 });
 
             modelBuilder.Entity("EcommerceApp.Models.User", b =>
@@ -196,9 +198,31 @@ namespace EcommerceApp.Migrations
 
             modelBuilder.Entity("EcommerceApp.Models.Product", b =>
                 {
+                    b.HasOne("EcommerceApp.Models.Design", "design")
+                        .WithMany("ParentProduct")
+                        .HasForeignKey("DesignId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("EcommerceApp.Models.Order")
+                        .WithMany("Products")
+                        .HasForeignKey("OrderId");
+
                     b.HasOne("EcommerceApp.Models.Page", "ProductsPage")
                         .WithMany("Products")
                         .HasForeignKey("PageId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("EcommerceApp.Models.ProductOrders", b =>
+                {
+                    b.HasOne("EcommerceApp.Models.Order", "Order")
+                        .WithMany("OrderedProducts")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("EcommerceApp.Models.Product", "Product")
+                        .WithMany("Buying")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -211,14 +235,6 @@ namespace EcommerceApp.Migrations
 
                     b.HasOne("EcommerceApp.Models.Style", "Style")
                         .WithMany("BaseProduct")
-                        .HasForeignKey("StyleId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("EcommerceApp.Models.SubStyle", b =>
-                {
-                    b.HasOne("EcommerceApp.Models.Style", "ParentStyle")
-                        .WithMany("ChildStyle")
                         .HasForeignKey("StyleId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

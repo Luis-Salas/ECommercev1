@@ -1,1 +1,68 @@
-<h1>welcome to . Store</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <link rel="stylesheet" href="~/css/style.css"/>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+        
+<h1>welcome to @ViewBag.PageName</h1> 
+<h2>here are all the products that you can buy</h2>
+@using EcommerceApp.Models
+@model Product
+<a href="/DisplayStylePage">create a style here</a>
+<a href="/DisplayDesignPage">create a Design here</a>
+@foreach(var item in @ViewBag.products)
+{
+   <br> <a href="/DisplayProductPage/@item.ProductId">@item.ProductName</a>
+}
+<h1 >create a product here</h1>
+<div class="ProductForm">
+
+ <form asp-action="CreateProduct" asp-controller="Userpage" asp-route-id="2" method="post">
+        <p>Product Name: <input asp-for="ProductName"/></p>
+        <p>Product Size: <input asp-for="ProductSize"/></p>
+        <p>Product Description: <input asp-for="ProductDescription"/></p>
+        <p>Testimonial: <input asp-for="Testimonial"/></p>
+        <p>Product Style <input asp-for="ProductStyle"/></p>
+        <p>Product Color <input asp-for="ProductColor"/></p>
+        <p>Product Quantity <input asp-for="ProductQuantity"/></p>
+        <input type="hidden" asp-for="PageId" value="@ViewBag.id"/>
+        <input id="ProdForm" type="hidden" asp-for="DesignId" value="@ViewBag.id"/>
+        @foreach(var design in @ViewBag.AllDesigns)
+        {
+                <img height="300px;"src="~/images/@design.Image" id="@design.DesignId">
+        }
+
+    <button type="submit">Submit</button>
+</form>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+<script>
+$( document ).ready(function() {
+    console.log( "ready!" );
+       $("img").click(function() {
+                var contentPanelId = jQuery(this).attr("id");
+                console.log(contentPanelId)
+                if($("#idForDesign").attr("id") == undefined){
+                        console.log("here")
+                        $( "#ProdForm" ).append( "<input id='idForDesign' type='hidden' asp-for='DesignId' value="+contentPanelId+"/> ");
+                }
+                else{
+
+                        $("#idForDesign").remove()
+
+                        $( "#ProdForm" ).attr("value", contentPanelId);
+                }
+        });
+});
+</script>
+</body>
+</html>
