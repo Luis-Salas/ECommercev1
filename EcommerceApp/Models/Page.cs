@@ -16,6 +16,9 @@ namespace EcommerceApp.Models
 
         public string about {get;set;}
 
+        //navigation property to design
+        public List<Design> Design {get;set;}
+
         //navigation property to the user
         public int UserId {get;set;}
         public User UsersPage {get;set;}

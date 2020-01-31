@@ -18,9 +18,10 @@ namespace EcommerceApp.Models
 
         public string Testimonial {get;set;}
 
-        public string ProductStyle {get;set;}
 
         public string ProductColor {get;set;}
+        public int ProductPrice {get;set;}
+
 
         public int ProductQuantity {get;set;}
         //navigation property to design

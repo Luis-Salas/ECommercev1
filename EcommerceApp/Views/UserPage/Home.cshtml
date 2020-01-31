@@ -17,7 +17,7 @@
 @using EcommerceApp.Models
 @model Product
 <a href="/DisplayStylePage">create a style here</a>
-<a href="/DisplayDesignPage">create a Design here</a>
+<a href="/DisplayDesignPage/@ViewBag.id">create a Design here</a>
 @foreach(var item in @ViewBag.products)
 {
    <br> <a href="/DisplayProductPage/@item.ProductId">@item.ProductName</a>
@@ -25,12 +25,12 @@
 <h1 >create a product here</h1>
 <div class="ProductForm">
 
- <form asp-action="CreateProduct" asp-controller="Userpage" asp-route-id="2" method="post">
+ <form asp-action="CreateProduct" asp-controller="Userpage" asp-route-id="@ViewBag.id" method="post">
         <p>Product Name: <input asp-for="ProductName"/></p>
         <p>Product Size: <input asp-for="ProductSize"/></p>
         <p>Product Description: <input asp-for="ProductDescription"/></p>
         <p>Testimonial: <input asp-for="Testimonial"/></p>
-        <p>Product Style <input asp-for="ProductStyle"/></p>
+        <p>Product Price <input asp-for="ProductPrice"/></p>
         <p>Product Color <input asp-for="ProductColor"/></p>
         <p>Product Quantity <input asp-for="ProductQuantity"/></p>
         <input type="hidden" asp-for="PageId" value="@ViewBag.id"/>

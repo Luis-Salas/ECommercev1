@@ -99,11 +99,11 @@ namespace EcommerceApp.Migrations
 
                     b.Property<string>("ProductName");
 
+                    b.Property<int>("ProductPrice");
+
                     b.Property<int>("ProductQuantity");
 
                     b.Property<string>("ProductSize");
-
-                    b.Property<string>("ProductStyle");
 
                     b.Property<string>("Testimonial");
 

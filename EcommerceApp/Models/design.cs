@@ -18,6 +18,9 @@ namespace EcommerceApp.Models
         
         //nav property to Product
         public List<Product> ParentProduct {get;set;}
+        //nav property to Page
+        public int PageId {get;set;}
+        public Page Page {get;set;}
         public DateTime CreatedAt {get;set;} = DateTime.Now;
         public DateTime UpdatedAt {get;set;} = DateTime.Now;
     }

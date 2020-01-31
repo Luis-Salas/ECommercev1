@@ -4,7 +4,7 @@
 <p>size: @ViewBag.ProductInfo.ProductSize</p>
 <p>Color: @ViewBag.ProductInfo.ProductColor</p>
 <p>Quantity: @ViewBag.ProductInfo.ProductQuantity</p>
-@ViewBag.ProductInfo.ProductId
+<p>PRice: @ViewBag.ProductInfo.ProductPrice</p>
 <h1>add a style to this item</h1>
 
 <form asp-action="AddStyleToProduct" asp-controller="Userpage" asp-route-id="@ViewBag.ProductInfo.ProductId" method="post">

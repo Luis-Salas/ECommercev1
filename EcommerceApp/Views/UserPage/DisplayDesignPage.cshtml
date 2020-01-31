@@ -1,7 +1,7 @@
 @using EcommerceApp.Models
 @model DesignViewModel
 <h2>create a design for your merch here</h2>
-<form enctype="multipart/form-data" asp-action="CreateDesign" asp-controller="UserPage" method="post">
+<form enctype="multipart/form-data" asp-action="CreateDesign" asp-controller="UserPage" asp-route-PageId="@ViewBag.PageId" method="post">
     time your promotion will run <input asp-for="PromoTime">
     <input asp-for="Photo">
         <button>Submit</button>

@@ -37,11 +37,12 @@ namespace EcommerceApp.Controllers
             var userPageName = dbContext.Pages
                 .Include(P => P.UsersPage)
                 .Include(P => P.Products)
+                // .Include(D => D.design)
                 .FirstOrDefault(P => P.UserId == id);
             ViewBag.PageName = userPageName.name;
             ViewBag.id = userPageName.PageId;
             ViewBag.products = userPageName.Products;
-            ViewBag.AllDesigns = dbContext.Designs.ToList();
+            // ViewBag.AllDesigns = dbContext.Designs
 
             return View("Home");
         }
@@ -49,52 +50,10 @@ namespace EcommerceApp.Controllers
         [Route("CreateProduct/{id}")]
         public IActionResult CreateProduct(Product ProductInfo, int id)
         {
-            // ProductInfo.PageId = id;
-            // if (HttpContext.Session.GetString("Email") != null)
-            // {
-            //     if (dbContext.Orders.FirstOrDefault(orderObject => orderObject.OrderId == 1) != null)
-            //     {
-            //         ProductInfo.OrderId = 1;
-            //     }
-            //     else
-            //     {
-            //         Order newOrder = new Order
-            //         {
-            //             OrderId = 1,
-            //             OrderNumber = "1",
-            //             total = 0,
-            //             status = "This is a default order"
-
-            //         };
-            //         dbContext.Orders.Add(newOrder);
-            //         dbContext.SaveChanges();
-            //     }
-                // }
-                // this section should go in the add cart button
-                // else
-                // {
-                // Created a new order for the guest user
-                // Order newOrder = new Order
-                // {
-                // OrderNumber = HttpContext.Session.GetString("guid"),
-                // Total = Product.Price,
-                // Status = "Not proccesed"
-
-                // };
-                // dbContext.Orders.Add(newOrder);
-                // dbContext.SaveChanges();
-
-                // SearchOption db for the product
-                // Product ProductFromDB = dbContext.Products.FirstOrDefault(p => p.ProductId == ProductIdFromForm);
-                // Search for the order with guid so we can get the id of the order
-                // Order OrderFromdb = dbContext.Orders.FirstOrDefault(o => o.OrderNumber == HttpContext.Session.GetString("guid"));
-                // point product to order
-                // ProductFromDB.OrderId = OrderFromdb.OrderId;
-            // }
             dbContext.Products.Add(ProductInfo);
             dbContext.SaveChanges();
 
-            return RedirectToAction("DisplayUserPage");
+            return RedirectToAction("DisplayUserPage", new{id = id});
         }
         [HttpPost]
         [Route("CreateStyle")]
@@ -133,15 +92,16 @@ namespace EcommerceApp.Controllers
             return Redirect("/DisplayProductPage/" + id);
         }
         [HttpGet]
-        [Route("DisplayDesignPage")]
-        public IActionResult DisplayDesignPage()
-        {
+        [Route("DisplayDesignPage/{PageId}")]
+        public IActionResult DisplayDesignPage(int PageId)
+        {   
+            ViewBag.PageId = PageId;
             return View();
         }
 
         [HttpPost]
-        [Route("CreateDesign")]
-        public IActionResult CreateDesign(DesignViewModel DesignformData)
+        [Route("CreateDesign/{PageId}")]
+        public IActionResult CreateDesign(DesignViewModel DesignformData, int PageId)
         {
             string uniqueFileName = null;
 
@@ -173,7 +133,7 @@ namespace EcommerceApp.Controllers
 
             dbContext.Designs.Add(newDesign);
             dbContext.SaveChanges();
-            return RedirectToAction("DisplayStylePage");
+            return RedirectToAction("DisplayUserPage", new {id = PageId });
         }
         // public string generateID()
         // {
