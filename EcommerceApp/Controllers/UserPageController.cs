@@ -37,12 +37,12 @@ namespace EcommerceApp.Controllers
             var userPageName = dbContext.Pages
                 .Include(P => P.UsersPage)
                 .Include(P => P.Products)
-                // .Include(D => D.design)
+                .Include(D => D.Design)
                 .FirstOrDefault(P => P.UserId == id);
             ViewBag.PageName = userPageName.name;
             ViewBag.id = userPageName.PageId;
             ViewBag.products = userPageName.Products;
-            // ViewBag.AllDesigns = dbContext.Designs
+            ViewBag.AllDesigns = userPageName.Design;
 
             return View("Home");
         }
@@ -125,6 +125,7 @@ namespace EcommerceApp.Controllers
 
             Design newDesign = new Design
             {
+                PageId =  PageId,
                 PromoTime = DesignformData.PromoTime,
                 // Store the file name in PhotoPath property of the employee object
                 // which gets saved to the Employees database table

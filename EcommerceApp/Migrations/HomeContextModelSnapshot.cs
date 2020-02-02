@@ -26,11 +26,15 @@ namespace EcommerceApp.Migrations
 
                     b.Property<string>("Image");
 
+                    b.Property<int>("PageId");
+
                     b.Property<int>("PromoTime");
 
                     b.Property<DateTime>("UpdatedAt");
 
                     b.HasKey("DesignId");
+
+                    b.HasIndex("PageId");
 
                     b.ToTable("Designs");
                 });
@@ -186,6 +190,14 @@ namespace EcommerceApp.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("EcommerceApp.Models.Design", b =>
+                {
+                    b.HasOne("EcommerceApp.Models.Page", "Page")
+                        .WithMany("Design")
+                        .HasForeignKey("PageId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("EcommerceApp.Models.Page", b =>

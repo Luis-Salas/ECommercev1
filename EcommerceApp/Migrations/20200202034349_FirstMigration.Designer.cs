@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcommerceApp.Migrations
 {
     [DbContext(typeof(HomeContext))]
-    [Migration("20200131015447_FirstMigration")]
+    [Migration("20200202034349_FirstMigration")]
     partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,11 +28,15 @@ namespace EcommerceApp.Migrations
 
                     b.Property<string>("Image");
 
+                    b.Property<int>("PageId");
+
                     b.Property<int>("PromoTime");
 
                     b.Property<DateTime>("UpdatedAt");
 
                     b.HasKey("DesignId");
+
+                    b.HasIndex("PageId");
 
                     b.ToTable("Designs");
                 });
@@ -188,6 +192,14 @@ namespace EcommerceApp.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("EcommerceApp.Models.Design", b =>
+                {
+                    b.HasOne("EcommerceApp.Models.Page", "Page")
+                        .WithMany("Design")
+                        .HasForeignKey("PageId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("EcommerceApp.Models.Page", b =>

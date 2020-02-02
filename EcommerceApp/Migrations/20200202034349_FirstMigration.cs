@@ -9,22 +9,6 @@ namespace EcommerceApp.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Designs",
-                columns: table => new
-                {
-                    DesignId = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Image = table.Column<string>(nullable: true),
-                    PromoTime = table.Column<int>(nullable: false),
-                    CreatedAt = table.Column<DateTime>(nullable: false),
-                    UpdatedAt = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Designs", x => x.DesignId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Orders",
                 columns: table => new
                 {
@@ -94,6 +78,29 @@ namespace EcommerceApp.Migrations
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Designs",
+                columns: table => new
+                {
+                    DesignId = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Image = table.Column<string>(nullable: true),
+                    PromoTime = table.Column<int>(nullable: false),
+                    PageId = table.Column<int>(nullable: false),
+                    CreatedAt = table.Column<DateTime>(nullable: false),
+                    UpdatedAt = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Designs", x => x.DesignId);
+                    table.ForeignKey(
+                        name: "FK_Designs_Pages_PageId",
+                        column: x => x.PageId,
+                        principalTable: "Pages",
+                        principalColumn: "PageId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -186,6 +193,11 @@ namespace EcommerceApp.Migrations
                         principalColumn: "StyleId",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Designs_PageId",
+                table: "Designs",
+                column: "PageId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Pages_UserId",
