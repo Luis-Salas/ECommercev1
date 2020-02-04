@@ -37,14 +37,16 @@ namespace EcommerceApp.Controllers
             var userPageName = dbContext.Pages
                 .Include(P => P.UsersPage)
                 .Include(P => P.Products)
+                    .ThenInclude(d => d.design)
                 .Include(D => D.Design)
                 .FirstOrDefault(P => P.UserId == id);
             ViewBag.PageName = userPageName.name;
             ViewBag.id = userPageName.PageId;
             ViewBag.products = userPageName.Products;
+            
             ViewBag.AllDesigns = userPageName.Design;
 
-            return View("Home");
+            return View("UserPage");
         }
         [HttpPost]
         [Route("CreateProduct/{id}")]

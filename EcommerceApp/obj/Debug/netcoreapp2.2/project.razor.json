@@ -2966,13 +2966,13 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\escar\\Documents\\ECommercev1\\EcommerceApp\\Views\\UserPage\\Home.cshtml",
-      "TargetPath": "Views\\UserPage\\Home.cshtml",
+      "FilePath": "c:\\Users\\escar\\Documents\\ECommercev1\\EcommerceApp\\Views\\Home\\ContentCreator.cshtml",
+      "TargetPath": "Views\\Home\\ContentCreator.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\escar\\Documents\\ECommercev1\\EcommerceApp\\Views\\Home\\ContentCreator.cshtml",
-      "TargetPath": "Views\\Home\\ContentCreator.cshtml",
+      "FilePath": "c:\\Users\\escar\\Documents\\ECommercev1\\EcommerceApp\\Views\\UserPage\\UserPage.cshtml",
+      "TargetPath": "Views\\UserPage\\UserPage.cshtml",
       "FileKind": "mvc"
     },
     {

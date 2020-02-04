@@ -55,7 +55,7 @@ using EcommerceApp.Models;
 
                 
                 System.Console.WriteLine("//////////////////////////");
-                return RedirectToAction("DisplayProductPage","UserPage", new{id = 1} );
+                return RedirectToAction("ShoppingCart","Home");
             }
 
           

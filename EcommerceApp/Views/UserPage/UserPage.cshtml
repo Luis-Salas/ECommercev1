@@ -16,11 +16,16 @@
 <h2>here are all the products that you can buy</h2>
 @using EcommerceApp.Models
 @model Product
+<a href="/">home</a>
 <a href="/DisplayStylePage">create a style here</a>
 <a href="/DisplayDesignPage/@ViewBag.id">create a Design here</a>
 @foreach(var item in @ViewBag.products)
 {
-   <br> <a href="/DisplayProductPage/@item.ProductId">@item.ProductName</a>
+<div style="border-style:solid;">
+
+        <br> <a href="/DisplayProductPage/@item.ProductId">@item.ProductName</a><br>
+        <img src="~/images/@item.design.Image" height="300px">
+</div>
 }
 <h1 >create a product here</h1>
 <div class="ProductForm">
